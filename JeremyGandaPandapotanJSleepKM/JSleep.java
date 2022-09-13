@@ -12,18 +12,21 @@ public class JSleep
     public static void main(String args[]){
         int getid;
         getid = getHotelId();
-        System.out.println(getid);
+        System.out.println("Hotel Id: "+ getid);
         
         String Name = getHotelName();
         System.out.println(Name);
 
         boolean X = isDiscount();
-        System.out.println(X);
+        System.out.println("Is Discount: "+ X);
 
         int before = 1000;
         int after = 900;
         float Percentage = getDiscountPercentage(before, after);
-        System.out.println(Percentage);
+        System.out.println("Discount Percentage: "+ Percentage);
+
+        int Discounted = getDiscountedPrice(before, Percentage);
+        System.out.println("Discounted Price: "+ Discounted);
     }
 
     public static int getHotelId()
@@ -48,5 +51,17 @@ public class JSleep
             DiscountPercentage = (float)(beforeDiscount - afterDiscount) / beforeDiscount;
         }
         return DiscountPercentage;
+    }
+
+    public static int getDiscountedPrice(int price, float discountPercentage){
+        int DiscountedPrice = 0;
+        if (discountPercentage >= 100.0f) {
+            discountPercentage = 100.0f;
+            DiscountedPrice =(int) (price - (price * discountPercentage));
+        }
+        else{
+            DiscountedPrice =(int) (price - (price * discountPercentage));
+        }
+        return DiscountedPrice;
     }
 }
