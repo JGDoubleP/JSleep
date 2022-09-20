@@ -7,8 +7,10 @@ package JeremyGandaPandapotanJSleepKM;
  * @author Jeremy Ganda Pandapotan
  * 
  */
+
 public class JSleep
 {
+    //modul 1
     public static void main(String args[]){
         int getid;
         getid = getHotelId();
@@ -27,8 +29,16 @@ public class JSleep
 
         int Discounted = getDiscountedPrice(before, Percentage);
         System.out.println("Discounted Price: "+ Discounted);
+
+        int Original = getrOriginalPrice(Discounted, Percentage);
+        System.out.println("Original Price: "+ Original);
+        
+    //modul 2
+    
+
     }
 
+    //modul 1
     public static int getHotelId()
     {
         return 0;
@@ -64,4 +74,15 @@ public class JSleep
         }
         return DiscountedPrice;
     }
+
+    public static int getrOriginalPrice(int discountedPrice, float discountPercentage){
+        int OriginalPrice = (int) (discountedPrice / (1 - discountPercentage));
+        return OriginalPrice;
+    }
+    
+    
+    
 }
+
+
+

@@ -13,4 +13,6 @@ comment5.params=beforeDiscount\ afterDiscount
 comment5.target=float\ getDiscountPercentage(int,\ int)
 comment6.params=price\ discountPercentage
 comment6.target=int\ getDiscountedPrice(int,\ float)
-numComments=7
+comment7.params=discountedPrice\ discountPercentage
+comment7.target=int\ getrOriginalPrice(int,\ float)
+numComments=8
