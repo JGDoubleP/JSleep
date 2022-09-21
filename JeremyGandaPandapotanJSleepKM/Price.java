@@ -1,14 +1,8 @@
 package JeremyGandaPandapotanJSleepKM;
 
-
-/**
- * Write a description of class Price here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Price
 {
+  //declaration variable
    public double rebate;
    public double price;
    public int discount;
@@ -28,17 +22,26 @@ public class Price
 
   public Price(double price, double rebate){
     this.price = price;
-    
+    this.rebate = rebate;
+    this.discount = 0;
   }
 
-  public double getDiscountedPrice(int Discount){
-    if (Discount == 100){
+  public double getDiscountedPrice(){
+
+    if (discount == 100){
       return 0;
     }
-    if (discount > 100){
-      Discount = 100;
+    else if (discount > 100){
+      discount = 100;
     }
 
-    return price;
+    return price - (price * discount) / 100;//Discount berbentuk int maka jika ingin menjadi percent maka dibagi 100
+  }
+
+  public double getRebatedPrice (){
+    if (rebate > price){
+      rebate = price;
+    }
+    return price - rebate;
   }
 }
