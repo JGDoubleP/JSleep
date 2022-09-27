@@ -1,7 +1,7 @@
 package JeremyGandaPandapotanJSleepKM;
 
 
-public class Voucher
+public class Voucher extends Serializable
 {
    public Type type;
    public double cut;
@@ -10,7 +10,8 @@ public class Voucher
    public double minimum;
    private boolean used;
 
-   public Voucher(String name, int code, Type type, double minimum, double cut){
+   public Voucher(int id, String name, int code, Type type, double minimum, double cut){
+    super(id);
     this.name = name;
     this.code = code;
     this.type = type;
@@ -49,23 +50,3 @@ public class Voucher
     }
    }
 }
-  /* 
-  public double getDiscountedPrice(){
-
-    if (discount == 100){
-      return 0;
-    }
-    else if (discount > 100){
-      discount = 100;
-    }
-
-    return price - (price * discount) / 100;//Discount berbentuk int maka jika ingin menjadi percent maka dibagi 100
-  }
-
-  public double getRebatedPrice (){
-    if (rebate > price){
-      rebate = price;
-    }
-    return price - rebate;
-  }
-  */
