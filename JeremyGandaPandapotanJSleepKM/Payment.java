@@ -29,7 +29,7 @@ public class Payment extends Invoice {
         return "\nRoomId = " + roomId + "\nFrom = " + from + "\nTo = " + to;
     }
 
-    public int getRoomId(int roomId) {
+    public int getRoomId() {
         return roomId;
     }
 }

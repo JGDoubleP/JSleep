@@ -35,18 +35,25 @@ public class Voucher extends Serializable
    public double apply(Price price){
     used = true;
     if (type == Type.DISCOUNT){
-        if(cut/100 == 100){
-            return 0;
-        }else if(cut/100 > 100){
-            return 0;
-        }
-        return price.price - (price.price * cut/100);
+        if(price.price - (price.price * cut / 100) >= 0){
+                return price.price - (price.price * cut / 100);
+            }
+            else{
+                return 0;
+            }
+    }
+    else if(type ==Type.REBATE){
+        if(price.price - cut < 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return price.price - cut;
+            }
     }
     else{
-        if(cut > price.price){
-            cut = price.price;
-        }
-        return price.price - cut;
+        return price.price;
     }
    }
 }

@@ -9,7 +9,7 @@ package JeremyGandaPandapotanJSleepKM;
  */
 public class Renter extends Serializable
 {
-    public int phonenumber = 0;
+    public int phoneNumber = 0;
     public String address = "";
     public String username;
 
@@ -24,16 +24,16 @@ public class Renter extends Serializable
         this.address = address;
     }
 
-    Renter(int id, String username, int phonenumber){
+    Renter(int id, String username, int phoneNumber){
         super(id);
         this.username = username;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
     }
 
-    Renter(int id, String username, int phonenumber, String address){
+    Renter(int id, String username, int phoneNumber, String address){
         super(id);
         this.username = username;
-        this.phonenumber = phonenumber;
+        this.phoneNumber = phoneNumber;
         this.address = address;
     }
 }
