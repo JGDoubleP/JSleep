@@ -1,7 +1,7 @@
 package JeremyGandaPandapotanJSleepKM;
 
 
-public class Voucher extends Serializable
+public class Voucher extends Serializable implements FileParser
 {
    public Type type;
    public double cut;
@@ -56,4 +56,12 @@ public class Voucher extends Serializable
         return price.price;
     }
    }
+   
+   public Object Write(){
+        return null;
+    }
+    
+    public boolean read(String content){
+        return false;
+    }
 }

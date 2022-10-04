@@ -6,7 +6,7 @@ package JeremyGandaPandapotanJSleepKM;
  * @author Jeremy Ganda Pandapotan
  * @version (a version number or a date)
  */
-public class Room extends Serializable
+public class Room extends Serializable implements FileParser
 {
    public int size;
    public String name;
@@ -32,4 +32,12 @@ public class Room extends Serializable
        return "\nName: " + name + "\nSize: " + size  + "\nFacility: " + facility + "\nCity: " + city + "\naddress: " + address 
        + "\nBedtype: " + bedType;
    }
+   
+   public Object Write(){
+        return null;
+    }
+    
+    public boolean read(String content){
+        return false;
+    }
 }

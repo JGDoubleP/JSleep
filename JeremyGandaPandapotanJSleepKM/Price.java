@@ -20,4 +20,5 @@ public class Price
 
     return "\nPrice: " + this.price + "\nDiscount: " + this.discount ;
   }
+  
 }
