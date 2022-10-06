@@ -57,6 +57,7 @@ public class Voucher extends Serializable implements FileParser
     }
    }
    
+   @Override
    public Object Write(){
         return null;
     }

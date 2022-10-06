@@ -33,9 +33,11 @@ public class Room extends Serializable implements FileParser
        + "\nBedtype: " + bedType;
    }
    
+   @Override
    public Object Write(){
         return null;
     }
+    
     
     public boolean read(String content){
         return false;

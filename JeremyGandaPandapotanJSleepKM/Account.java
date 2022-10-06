@@ -23,6 +23,7 @@ public class Account extends Serializable implements FileParser
         return "ID: " + id + "\nName: " + name + "\nEmail: " + email + "\nPassoword: " + password;
     }
     
+    @Override
     public Object Write(){
         return null;
     }
