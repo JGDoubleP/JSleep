@@ -27,6 +27,8 @@ public class Account extends Serializable implements FileParser
     public Object Write(){
         return null;
     }
+
+    @Override
     public boolean read(String content){
         return false;
     }
