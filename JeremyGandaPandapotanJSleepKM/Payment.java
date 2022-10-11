@@ -13,7 +13,7 @@ public class Payment extends Invoice {
     private int roomId;
 
     public Payment(int id, int buyerId, int renterId, int roomId) {
-        super(id, buyerId, renterId);
+        super(buyerId, renterId);
         this.roomId = roomId;
         this.from = new Date();
         this.to = new Date();
@@ -21,7 +21,7 @@ public class Payment extends Invoice {
     }
 
     public Payment(int id, Account buyer, Renter renter, int roomId) {
-        super(id, buyer, renter);
+        super(buyer, renter);
         this.roomId = roomId;
         this.from = new Date();
         this.to = new Date();

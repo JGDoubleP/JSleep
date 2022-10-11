@@ -12,37 +12,18 @@ import java.sql.Date;
 public class JSleep
 {
     public static void main(String args[]){
-        Room RoomA = JSleep.createRoom();
-        Room RoomB = JSleep.createRoom();
         
-        /*
-        System.out.println("Membuat booking dari tanggal 15 hingga 18");
-        Date start = Date.valueOf("2022-8-15");
-        Date end = Date.valueOf("2022-8-20");
-        System.out.println(Payment.makeBooking(start, end,RoomA));  
-        */
+    	ArrayList<Room> RoomSerialized = new ArrayList<Room>();
         
-        //error handling input
-        System.out.println("Membuat booking dari tanggal 13 hingga 15");
-        Date start = Date.valueOf("2022-8-13");
-        Date end = Date.valueOf("2022-8-15");
-        System.out.println(Payment.makeBooking(start, end,RoomA));
-        
-        System.out.println("Membuat booking dari tanggal 15 hingga 18");
-        Date start2 = Date.valueOf("2022-8-18");
-        Date end2 = Date.valueOf("2022-8-20");
-        System.out.println(Payment.makeBooking(start2, end2,RoomA));
-
-        System.out.println("Membuat booking dari tanggal 15 hingga 18 untuk kamarberbeda");
-        Date start3 = Date.valueOf("2022-8-18");
-        Date end3 = Date.valueOf("2022-8-20");
-        System.out.println(Payment.makeBooking(start3, end3,RoomB));
-
+        for(int i = 0; i<5; i++){
+            RoomSerialized.add(i, JSleep.createRoom());
+            System.out.println(RoomSerialized.get(i).toString());
+        }
     }
 
     public static Room createRoom(){
         Price price = new Price(100000, 5);
-        Room room = new Room(1, "JG" , 2, price, Facility.AC, City.JAKARTA, "Jl. Terus");
+        Room room = new Room("JG" , 2, price, Facility.AC, City.JAKARTA, "Jl. Terus");
 
         return room;
     }
