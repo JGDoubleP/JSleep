@@ -23,8 +23,8 @@ public class JSleep
         */
         
         //error handling input
-        System.out.println("Membuat booking dari tanggal 20 hingga 15");
-        Date start = Date.valueOf("2022-8-20");
+        System.out.println("Membuat booking dari tanggal 13 hingga 15");
+        Date start = Date.valueOf("2022-8-13");
         Date end = Date.valueOf("2022-8-15");
         System.out.println(Payment.makeBooking(start, end,RoomA));
         

@@ -34,14 +34,20 @@ public class Payment extends Invoice {
     }
     
     public static boolean makeBooking(Date from, Date to, Room room){
-        if (availability(from, to, room) == true){
+    	Calendar temp = Calendar.getInstance();
+    	if (availability(from, to, room) == true) {
+        while (from.before(to)){
             room.booked.add(from);
-            room.booked.add(to);
-            return true;
-        }
-        else{
-            return false;
-        }
+            temp.setTime(from);
+            temp.add(Calendar.DATE, 1);
+            from = temp.getTime();
+        	}
+        return true;
+    	}
+    	
+    	else {
+    		return false;
+    	}
     }
     /*
     public String getDuration(){
@@ -60,27 +66,22 @@ public class Payment extends Invoice {
     public static boolean availability(Date from, Date to, Room room){
         
         //error handling
-        if(to.compareTo(from) < 0)
+        if(to.before(from))
         {
             return false;
         }
-
-        else if(room.booked.isEmpty())
-        {
-            return true;
+        
+        else {
+        for(Date index : room.booked) {
+        	if(from.equals(index)) {
+        		return false;
+        	}
+        	
+        	else if(from.before(index) && to.after(index)) {
+        		return false;
+        	}
         }
-
-        else
-        {
-
-            for(int i = 0; i < room.booked.size(); i++)
-            {
-                if(room.booked.get(i).compareTo(from) == 0 || room.booked.get(i).compareTo(to) == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
+        return true;
         }
     }
 }
