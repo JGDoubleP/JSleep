@@ -6,6 +6,44 @@ public class Algorithm {
 		
 	}
 	
+	public static <T> List<T> collect(Iterable<T> iterable, T value) {
+        final Iterator<T> counter = iterable.iterator();
+        return collect(counter, value);
+    }
+	
+	public static <T> List<T> collect(Iterable<T> iterable, Predicate<T> pred) {
+        final Iterator<T> counter = iterable.iterator();
+        return collect(counter, pred);
+    }
+	
+	public static <T> List<T> collect(T[] array, T value) {
+        final Iterator<T> counter = Arrays.stream(array).iterator();
+        return collect(counter, value);
+    }
+	
+	public static <T> List<T> collect(Iterator<T> iterator, T value) {
+        final Predicate<T> pred = value::equals;
+        return collect(iterator, pred);
+    }
+	
+	public static <T> List<T> collect(T[] array, Predicate<T> pred) {
+        final Iterator<T> counter = Arrays.stream(array).iterator();
+        return collect(counter, pred);
+    }
+	
+	public static <T> List<T> collect(Iterator<T> iterator, Predicate<T> pred) {
+        List<T> List = new ArrayList<T>();
+		int count = 0;
+        while (iterator.hasNext()) {
+            T current = iterator.next();
+            if (pred.predicate(current))
+                List.add(current);
+        }
+        return List;
+    }
+	
+	
+	
 	public static <T> int count(Iterator<T> iterator, T value) {
         final Predicate<T> pred = value::equals;
         return count(iterator, pred);
@@ -108,4 +146,32 @@ public class Algorithm {
         }
         return null;
     }
+    
+    public static <T> List<T> paginate (T[] array, int page, int pageSize, Predicate<T> pred) {
+    	Iterator<T> iterator = Arrays.stream(array).iterator();
+    	return paginate(iterator, page, pageSize, pred);
+    }
+    
+    public static <T> List<T> paginate (Iterator<T> iterator, int page, int pageSize, Predicate<T> pred) {
+    	List<T> List = new ArrayList<T>();
+    	int first = (page * pageSize) + 1;
+    	int last = (first + pageSize) - 1;
+    	
+    	while(iterator.hasNext()) {
+    		for(int i = 0 ; i < (last - first) ; i++ ) {
+    			T value = iterator.next();
+    			if (pred.equals(iterator)) {
+    				List.add(value);
+    			}
+    		}
+    	}
+    	return List;
+    }
+    
+    public static <T> List<T> paginate (Iterable<T> iterable, int page, int pageSize, Predicate<T> pred) {
+    	Iterator<T> iterator = iterable.iterator();
+    	return paginate(iterator, page, pageSize, pred);
+    }
+    
+    
 }
