@@ -8,7 +8,7 @@ import java.util.*;
  * @author Jeremy Ganda Pandapotan
  * @version (a version number or a date)
  */
-public class Room extends Serializable implements FileParser {
+public class Room extends Serializable {
     public int size;
     public String name;
     public Price price;
@@ -17,8 +17,9 @@ public class Room extends Serializable implements FileParser {
     public City city;
     public String address;
     public ArrayList<Date> booked = new ArrayList<Date>();
+    public int accountId;
 
-    public Room( String name, int size, Price price, Facility facility, City city, String address) {
+    public Room(int accountId, String name, int size, Price price, Facility facility, City city, String address) {
         super();
         this.name = name;
         this.size = size;
@@ -36,13 +37,4 @@ public class Room extends Serializable implements FileParser {
                 + "\nBedtype: " + bedType;
     }
 
-    @Override
-    public Object Write() {
-        return null;
-    }
-
-    @Override
-    public boolean read(String content) {
-        return false;
-    }
 }

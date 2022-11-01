@@ -13,48 +13,45 @@ import com.google.gson.*;
  * 
  */
 
-public class JSleep
-{
-	class Country{
-		public String name;
-		public int population;
-		public List<String> listOfStates;
-	}
-	
-	public static void main (String[] args) {
-		String filepath= "E:\\Kuligan\\Sem 3\\OOP\\Modul 1\\JSleep\\city.json";
-		Gson gson = new Gson();
+public class JSleep{
+	public static void main(String args[]){
+		Renter testRegex = new Renter("Netlab_", "081234567890", "Jl Margonda Raya");
+		Renter testRegexFail = new Renter("netlab", "081", "Jalan");
+		System.out.println(testRegex.validate());
+		System.out.println(testRegexFail.validate());
+		
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(filepath));
-			Country input = gson.fromJson(br, Country.class);
-			System.out.println("name: " + input.name);
-			System.out.println("population: " + input.population);
-			System.out.println("states : ");
-			input.listOfStates.forEach(state -> System.out.println(state));
+			String filepath = "E:\\Kuligan\\Sem 3\\OOP\\Modul 1\\JSleep\\json\\randomRoomList.json";
+			
+			JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
+			List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0, 5);
+			filterTableRoom.forEach(room -> System.out.println(room.toString()));
 		}
-		catch(IOException e) {
-			e.printStackTrace();
+		catch (Throwable t) {
+			t.printStackTrace();
 		}
 	}
 	
-	/*
-    public static void main(String args[]){
-        
-    	ArrayList<Room> RoomSerialized = new ArrayList<Room>();
-        
-        for(int i = 0; i<5; i++){
-            RoomSerialized.add(i, JSleep.createRoom());
-            System.out.println(RoomSerialized.get(i).toString());
-        }
-    }
-
-    public static Room createRoom(){
-        Price price = new Price(100000, 5);
-        Room room = new Room("JG" , 2, price, Facility.AC, City.JAKARTA, "Jl. Terus");
-
-        return room;
-    }
-    */
+	public static Room createRoom() {
+		Price price = new Price(100000, 5);
+        Room room = new Room(1, "JG" , 2, price, Facility.AC, City.JAKARTA, "Jl. Terus");
+		return room;
+	}
+	
+	public static List<Room> filterByCity (List<Room> list, String search, int page, int pageSize){
+		
+		return Algorithm.paginate(list, page, pageSize, room -> room.city.toString().toLowerCase().contains(search.toLowerCase()));
+	}
+	
+	public static List<Room> filterByPrice(List<Room> list, double minPrice, double maxPrice){
+		List<Room> Result = new ArrayList<Room>();
+		
+		return null;
+	}
+	
+	public static List<Room> filterByAccountId(List<Room> list, int accountId, int page, int pageSize){
+		return null;
+	}
 }
 
 
