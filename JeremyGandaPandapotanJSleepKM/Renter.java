@@ -14,27 +14,9 @@ public class Renter extends Serializable
     public String phoneNumber;
     public String address = "";
     public String username;
-    public static final String REGEX_NAME = "[A-Z][a-z0-9_-]{4,20}$";
-    public static final String REGEX_PHONE = "[0-9]{9,12}";
+    public static final String REGEX_NAME = "^[A-Z][a-zA-Z0-9_]{4,20}$";
+    public static final String REGEX_PHONE = "^[0-9]{9,12}$";
 
-    /*
-    Renter( String username){
-        super();
-        this.username = username;
-    }
-
-    Renter(String username, String address){
-        super();
-        this.username = username;
-        this.address = address;
-    }
-
-    Renter( String username, int phoneNumber){
-        super();
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-    }
-*/
     
     Renter( String username, String phoneNumber, String address){
         super();
@@ -43,11 +25,12 @@ public class Renter extends Serializable
         this.address = address;
     }
     
-    public boolean validate () {
-    	Pattern patternUsername = Pattern.compile(REGEX_NAME);
-    	Matcher UsernameMatcher = patternUsername.matcher(this.username);
-    	Pattern patternPhonenumber = Pattern.compile(REGEX_PHONE);
-    	Matcher PhonenumberMatcher = patternPhonenumber.matcher(this.phoneNumber);
-    	return UsernameMatcher.find() && PhonenumberMatcher.find();
+    public boolean validate(){
+        if (username.matches(REGEX_NAME) && phoneNumber.matches(REGEX_PHONE)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }

@@ -37,4 +37,12 @@ public class Room extends Serializable {
                 + "\nBedtype: " + bedType;
     }
 
+    public Object write()
+    {
+        return null;
+    }
+    public boolean read(String content)
+    {
+        return false;
+    }
 }

@@ -1,10 +1,5 @@
 package JeremyGandaPandapotanJSleepKM;
 import java.util.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
-import com.google.gson.*;
 
 /**
  * Write a description of class JSleep here.
@@ -21,14 +16,21 @@ public class JSleep{
 		System.out.println(testRegexFail.validate());
 		
 		try {
-			String filepath = "E:\\Kuligan\\Sem 3\\OOP\\Modul 1\\JSleep\\json\\randomRoomList.json";
+			String filepath = "json/account.json";
 			
-			JsonTable<Room> tableRoom = new JsonTable<>(Room.class, filepath);
-			List<Room> filterTableRoom = filterByCity(tableRoom, "medan", 0, 5);
-			filterTableRoom.forEach(room -> System.out.println(room.toString()));
+			JsonTable <Account> tableAccount = new JsonTable<>(Account.class, filepath);
+            tableAccount.add(new Account("name", "email", "password"));
+            tableAccount.writeJson();
+
+            tableAccount = new JsonTable<>(Account.class, filepath);
+            tableAccount.forEach(account -> System.out.println(account.toString() + "\n"));
 		}
 		catch (Throwable t) {
 			t.printStackTrace();
+		}
+		
+		for(int i = 0; i < 10; i++) {
+			ThreadingObject thread = new ThreadingObject("Thread " + i);
 		}
 	}
 	
@@ -44,14 +46,18 @@ public class JSleep{
 	}
 	
 	public static List<Room> filterByPrice(List<Room> list, double minPrice, double maxPrice){
-		List<Room> Result = new ArrayList<Room>();
-		
-		return null;
+		return Algorithm.<Room>collect(list, room -> room.price.price >= minPrice && room.price.price <= maxPrice);
 	}
 	
 	public static List<Room> filterByAccountId(List<Room> list, int accountId, int page, int pageSize){
-		return null;
+		List<Room> result = new ArrayList<>();
+        for (Room room : list)
+        {
+            if (room.accountId == accountId)
+            {
+                result.add(room);
+            }
+        }
+        return result.subList(page * pageSize, Math.min((page + 1) * pageSize, result.size()));
 	}
 }
-
-
