@@ -1,5 +1,6 @@
 package com.JeremyGandaPandapotanJSleepKM;
 
+import com.JeremyGandaPandapotanJSleepKM.dbjson.*;
 
 /**
  * Write a description of class Complaint here.

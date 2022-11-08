@@ -1,5 +1,5 @@
 package com.JeremyGandaPandapotanJSleepKM;
-
+import com.JeremyGandaPandapotanJSleepKM.dbjson.*;
 /**
  * Write a description of class Serializable here.
  *
@@ -8,6 +8,8 @@ package com.JeremyGandaPandapotanJSleepKM;
  */
 public class Account extends Serializable
 {
+	public double balance;
+	public Renter renter;
     public String name;
     public String email;
     public String password;
@@ -15,11 +17,12 @@ public class Account extends Serializable
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
 
     
-    public Account( String name, String email, String password){
+    public Account( String name, String email, String password, double balance){
         super();
         this.name = name;
         this.email = email;
         this.password = password;
+        this.balance = balance;
        
     }
 

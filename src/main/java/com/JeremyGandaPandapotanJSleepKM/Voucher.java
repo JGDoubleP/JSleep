@@ -1,4 +1,5 @@
 package com.JeremyGandaPandapotanJSleepKM;
+import com.JeremyGandaPandapotanJSleepKM.dbjson.*;
 
 
 public class Voucher extends Serializable

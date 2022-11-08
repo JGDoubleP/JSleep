@@ -1,4 +1,4 @@
-package com.JeremyGandaPandapotanJSleepKM;
+package com.JeremyGandaPandapotanJSleepKM.dbjson;
 
 import java.util.*;
 
@@ -8,7 +8,7 @@ import java.util.*;
  * @author Jeremy Ganda Pandapotan
  * @version (a version number or a date)
  */
-public class Serializable {
+public class Serializable implements Comparable<Serializable> {
     public final int id;
     private static HashMap <Class<?>, Integer> mapCounter = new HashMap <Class<?>, Integer>();
 

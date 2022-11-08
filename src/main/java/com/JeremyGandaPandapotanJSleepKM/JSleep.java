@@ -1,4 +1,5 @@
 package com.JeremyGandaPandapotanJSleepKM;
+import com.JeremyGandaPandapotanJSleepKM.dbjson.*;
 import java.util.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,6 +15,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JSleep{
 	public static void main(String args[]){
+		JsonDBEngine.Run(JSleep.class);
+		SpringApplication.run(JSleep.class, args);
+		Runtime.getRuntime().addShutdownHook(new Thread(()-> JsonDBEngine.join()));
+	}
+		/*
 		SpringApplication.run(JSleep.class, args);
 		Renter testRegex = new Renter("Netlab_", "081234567890", "Jl Margonda Raya");
 		Renter testRegexFail = new Renter("netlab", "081", "Jalan");
@@ -65,4 +71,5 @@ public class JSleep{
         }
         return result.subList(page * pageSize, Math.min((page + 1) * pageSize, result.size()));
 	}
+	*/
 }
