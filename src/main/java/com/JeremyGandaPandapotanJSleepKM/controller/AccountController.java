@@ -50,5 +50,11 @@ public class AccountController implements BasicGetController<Account>
         return null;
     }
 
+	@Override
+	public JsonTable<Account> getJsonTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
     
 }
