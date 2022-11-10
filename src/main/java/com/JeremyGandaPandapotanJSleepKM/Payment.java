@@ -28,10 +28,6 @@ public class Payment extends Invoice {
         this.to.setDate(this.from.getDate() + 2);
     }
     
-    public String getTime(){
-        SimpleDateFormat SDFormat = new SimpleDateFormat("dd MMMM yyyy");
-        return "Formatted Date = " + SDFormat.format(this.from.getTime());
-    }
     
     public static boolean makeBooking(Date from, Date to, Room room){
     	Calendar temp = Calendar.getInstance();

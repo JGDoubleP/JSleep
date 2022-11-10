@@ -12,7 +12,7 @@ public class Invoice extends Serializable
 {
     public int buyerId;
     public int renterId;
-    public Date time;
+//    public Date time;
     public RoomRating rating;
     public PaymentStatus status;
 
@@ -20,7 +20,7 @@ public class Invoice extends Serializable
         super();
         this.buyerId = buyerId;
         this.renterId = renterId;
-        this.time = new Date();
+//        this.time = new Date();
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
     }
@@ -31,11 +31,11 @@ public class Invoice extends Serializable
         this.renterId = renter.id;
         this.rating = RoomRating.NONE;
         this.status = PaymentStatus.WAITING;
-        this.time = new Date();
+//        this.time = new Date();
     }
 
     public String print(){
-        return "buyerId = " + buyerId + "\nrenterid = " + renterId + "\nTime= " + time;
+        return "buyerId = " + buyerId + "\nrenterid = " + renterId /*+ "\nTime= " + time*/;
     }
 
     public enum RoomRating{

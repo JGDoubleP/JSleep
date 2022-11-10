@@ -9,14 +9,10 @@ import com.JeremyGandaPandapotanJSleepKM.dbjson.JsonTable;
 
 public class PaymentController implements BasicGetController<Payment> {
 
-    public static final long DELIVERED_LIMIT_MS = 0;
-    public static final long ON_DELIVERED_LIMIT_MS = 0;
-    public static final long ON_PROGRESS_LIMIT_MS = 0;
-    public static final long WAITING_CONF_LIMIT_MS = 0;
 
-    @JsonAutowired(filepath = "E:\\Kuligan\\Sem 3\\OOP\\Modul 1\\JSleep\\src\\json\\payment.json", value = Payment.class)
+    @JsonAutowired(filepath = "src/json/payment.json", value = Payment.class)
     public static JsonTable<Payment> paymentTable;
-    //public static ObjectPoolThread<Payment> poolThread;
+
 
     @PostMapping("/payment")
     public boolean accept (int id) {

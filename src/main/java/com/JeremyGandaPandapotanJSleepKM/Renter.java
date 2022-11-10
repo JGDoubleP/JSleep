@@ -19,7 +19,7 @@ public class Renter extends Serializable
     public static final String REGEX_PHONE = "^[0-9]{9,12}$";
 
     
-    Renter( String username, String phoneNumber, String address){
+    public Renter( String username, String phoneNumber, String address){
         super();
         this.username = username;
         this.phoneNumber = phoneNumber;

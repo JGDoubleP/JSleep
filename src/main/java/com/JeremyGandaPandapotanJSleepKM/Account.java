@@ -17,12 +17,11 @@ public class Account extends Serializable
     public static final String REGEX_PASSWORD = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
 
     
-    public Account( String name, String email, String password, double balance){
+    public Account( String name, String email, String password){
         super();
         this.name = name;
         this.email = email;
         this.password = password;
-        this.balance = balance;
        
     }
 
