@@ -16,7 +16,7 @@ public interface BasicGetController<T extends Serializable>{
 			@RequestParam int pageSize
 			){
 			final JsonTable<T> table = getJsonTable();
-			return Algorithm.paginate(table, page, pageSize, pred -> true);
+			return Algorithm.paginate(table, page, pageSize, o -> true);
 		}
 		
 		 @GetMapping("/{id}")
