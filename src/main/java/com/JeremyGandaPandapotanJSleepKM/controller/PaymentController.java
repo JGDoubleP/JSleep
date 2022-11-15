@@ -3,6 +3,7 @@ package com.JeremyGandaPandapotanJSleepKM.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -82,4 +83,20 @@ public class PaymentController implements BasicGetController<Payment> {
     public JsonTable<Payment> getJsonTable(){
         return paymentTable;
     }
+    
+    @PostMapping("/{id}/submit")
+    public boolean submit(@RequestParam int id){
+        return false;
+    }
+    
+    @Override
+    public Payment getById(int id) {
+        return Algorithm.<Payment>find(getJsonTable(), pred -> pred.id == id);
+    }
+
+    @Override
+    public List<Payment> getPage(int page, int pageSize) {
+        return Algorithm.paginate(getJsonTable(), page, pageSize, pred -> true);
+    }
+    
 }

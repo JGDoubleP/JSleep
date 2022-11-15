@@ -31,7 +31,7 @@ public class AccountController implements BasicGetController<Account>
     String index() { return "account page"; }
 
 	@PostMapping("/register")
-    public Account register( 
+    Account register( 
     		@RequestParam String name, 
     		@RequestParam String email, 
     		@RequestParam String password) {
@@ -89,7 +89,7 @@ public class AccountController implements BasicGetController<Account>
 	}
 	
 	@PostMapping("/login")
-	public Account login( @RequestParam String email, @RequestParam String password) {
+	Account login( @RequestParam String email, @RequestParam String password) {
 		 try {
 	            MessageDigest msgDgst = MessageDigest.getInstance("MD5");
 	            msgDgst.update(password.getBytes());
@@ -111,6 +111,14 @@ public class AccountController implements BasicGetController<Account>
             }
         }
         return null;
+    }
+	
+	@PostMapping("{id}/topUp")
+    boolean topUp(@PathVariable int id, @RequestParam double balance){
+        Account account = Algorithm.<Account>find(getJsonTable(), pred -> pred.id == id);
+        if(account == null) return false;
+        account.balance += balance;
+        return true;
     }
 
 }

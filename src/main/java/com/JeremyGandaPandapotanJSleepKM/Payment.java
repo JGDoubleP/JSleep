@@ -15,17 +15,15 @@ public class Payment extends Invoice {
     public Payment(int id, int buyerId, int renterId, int roomId, Date fromDate, Date toDate) {
         super(buyerId, renterId);
         this.roomId = roomId;
-        this.from = new Date();
-        this.to = new Date();
-        this.to.setDate(this.from.getDate() + 2);
+        this.from = fromDate;
+        this.to = toDate;
     }
 
-    public Payment(int id, Account buyer, Renter renter, int roomId) {
+    public Payment(Account buyer, Renter renter, int roomId, Date fromDate, Date toDate) {
         super(buyer, renter);
         this.roomId = roomId;
-        this.from = new Date();
-        this.to = new Date();
-        this.to.setDate(this.from.getDate() + 2);
+        this.from = fromDate;
+        this.to = toDate;
     }
     
     

@@ -2,15 +2,18 @@ package com.JeremyGandaPandapotanJSleepKM.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.JeremyGandaPandapotanJSleepKM.Account;
 import com.JeremyGandaPandapotanJSleepKM.Algorithm;
 import com.JeremyGandaPandapotanJSleepKM.City;
 import com.JeremyGandaPandapotanJSleepKM.Facility;
+import com.JeremyGandaPandapotanJSleepKM.Price;
 import com.JeremyGandaPandapotanJSleepKM.Room;
 import com.JeremyGandaPandapotanJSleepKM.dbjson.JsonAutowired;
 import com.JeremyGandaPandapotanJSleepKM.dbjson.JsonTable;
@@ -28,8 +31,8 @@ public class RoomController implements BasicGetController<Room> {
 		return roomTable;
 	}
 	
-	@PostMapping("/{id}/registerRenter")
-	public List<Room> getRoomByRenter(
+	@GetMapping("/{id}/renter")
+	List<Room> getRoomByRenter(
 			@PathVariable int id,
 			@RequestParam int page,
 			@RequestParam int pageSize
@@ -47,7 +50,12 @@ public class RoomController implements BasicGetController<Room> {
             @RequestParam City city,
             @RequestParam String address
             ){
-        return null;
-	
-}
+		Account account = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == accountId && pred.renter != null);
+        if(account == null) return null;
+        else{
+            Room room = new Room(accountId, name, size, new Price(price), facility, city, address);
+            roomTable.add(room);
+            return room;
+        }	
+	}
 }
