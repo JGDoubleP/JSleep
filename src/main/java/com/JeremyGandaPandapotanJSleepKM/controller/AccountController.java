@@ -14,6 +14,13 @@ import java.util.regex.Pattern;
 // TODO sesuaikan dengan package Anda: import com.netlabJSleepGS.Account;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This class provides a REST controller for handling accounts.
+ * It supports creating and querying accounts.
+ * 
+ * @author JeremyGandaPandapotanJSleepKM
+ */
+
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
@@ -27,9 +34,24 @@ public class AccountController implements BasicGetController<Account>
 	@JsonAutowired(filepath = "src/json/account.json", value = Account.class)
 	public static JsonTable<Account> accountTable;
 	
+	/**
+	 * This method returns a string indicating the account page.
+	 *
+	 * @return A string indicating the account page.
+	 */
 	@GetMapping
     String index() { return "account page"; }
 
+	/**
+	 * This method registers a new account with the provided name, email, and password.
+	 * It checks if the email and password are valid, hashes the password using MD5,
+	 * and adds the new account to the account table.
+	 *
+	 * @param name The name of the new account.
+	 * @param email The email of the new account.
+	 * @param password The password of the new account.
+	 * @return The new account if it was created successfully, or null otherwise.
+	 */
 	@PostMapping("/register")
     Account register( 
     		@RequestParam String name, 
@@ -59,7 +81,16 @@ public class AccountController implements BasicGetController<Account>
         }
 	}
     
-    
+	/**
+	 * This method registers a renter for the account with the provided id.
+	 * It associates the renter with the account if the account exists and does not already have a renter.
+	 *
+	 * @param id The id of the account.
+	 * @param username The username of the renter.
+	 * @param address The address of the renter.
+	 * @param phoneNumber The phone number of the renter.
+	 * @return The new renter if it was registered successfully, or null otherwise.
+	 */
     @PostMapping("/{id}/registerRenter")
     Renter registerRenter (
     		@RequestParam int id, 
@@ -81,6 +112,11 @@ public class AccountController implements BasicGetController<Account>
     }
     
 
+    /**
+     * This method returns the account table.
+     *
+     * @return The account table.
+     */
 	@Override
 	@GetMapping("/account")
 	public JsonTable<Account> getJsonTable() {
@@ -88,6 +124,15 @@ public class AccountController implements BasicGetController<Account>
 		return accountTable;
 	}
 	
+	/**
+	 * This method logs in an existing account with the provided email and password.
+	 * It checks if the email and password are valid, hashes the password using MD5,
+	 * and returns the account if it exists in the account table.
+	 *
+	 * @param email The email of the existing account.
+	 * @param password The password of the existing account.
+	 * @return The existing account if the email and password are valid and the account exists, or null otherwise.
+	 */
 	@PostMapping("/login")
 	Account login( @RequestParam String email, @RequestParam String password) {
 		 try {

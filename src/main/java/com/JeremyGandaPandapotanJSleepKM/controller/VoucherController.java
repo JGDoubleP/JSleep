@@ -17,13 +17,27 @@ import com.JeremyGandaPandapotanJSleepKM.controller.BasicGetController;
 import com.JeremyGandaPandapotanJSleepKM.dbjson.JsonAutowired;
 import com.JeremyGandaPandapotanJSleepKM.dbjson.JsonTable;
 
+/**
+ * VoucherController provides RESTful APIs for managing vouchers.
+ * 
+ * @author JeremyGandaPandapotanJSleepKM
+ * @version 1.0
+ */
 @RestController
 @RequestMapping("/voucher")
 public class VoucherController implements BasicGetController<Voucher> {
 
+	/**
+	 * The JsonTable containing the Voucher objects.
+	 */
 	@JsonAutowired(filepath = "src/json/voucher.json", value = Voucher.class)
 	public static JsonTable<Voucher> voucherTable;
 	
+	/**
+	 * Returns the JsonTable containing the Voucher objects.
+	 * 
+	 * @return the JsonTable containing the Voucher objects
+	 */
 	@Override
 	@GetMapping("/voucher")
 	public JsonTable<Voucher> getJsonTable() {
@@ -31,6 +45,12 @@ public class VoucherController implements BasicGetController<Voucher> {
 		return voucherTable;
 	}
 	
+	/**
+	 * Returns whether the voucher with the given ID has been used.
+	 * 
+	 * @param id the ID of the voucher to check
+	 * @return true if the voucher has been used, false otherwise
+	 */
 	@GetMapping("/{id}/isUsed")
 	boolean isUsed(
 			@PathVariable int id
@@ -39,6 +59,13 @@ public class VoucherController implements BasicGetController<Voucher> {
         return voucher.isUsed();
 	}
 	
+	/**
+	 * Returns whether the voucher with the given ID can be applied to a purchase of the specified price.
+	 * 
+	 * @param id the ID of the voucher to check
+	 * @param price the price of the purchase to check against
+	 * @return true if the voucher can be applied, false otherwise
+	 */
 	@GetMapping("/{id}/canApply")
 	boolean canApply(
 			@PathVariable int id,
@@ -49,6 +76,13 @@ public class VoucherController implements BasicGetController<Voucher> {
 		
 	}
 	
+	/**
+	 * Returns a paginated list of available (i.e. not used) vouchers.
+	 * 
+	 * @param page the page number to return
+	 * @param pageSize the number of vouchers per page
+	 * @return a list of available vouchers
+	 */
 	@GetMapping("/getAvailable")
     @ResponseBody
     List<Voucher> getAvailable(

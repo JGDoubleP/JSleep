@@ -21,6 +21,9 @@ import com.JeremyGandaPandapotanJSleepKM.*;
 import com.JeremyGandaPandapotanJSleepKM.dbjson.JsonAutowired;
 import com.JeremyGandaPandapotanJSleepKM.dbjson.JsonTable;
 
+/**
+ * The PaymentController class provides REST API endpoints for creating and managing payments.
+ */
 @RestController
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
