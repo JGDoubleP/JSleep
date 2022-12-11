@@ -1,6 +1,8 @@
 package com.JeremyGandaPandapotanJSleepKM.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.JeremyGandaPandapotanJSleepKM.Account;
 import com.JeremyGandaPandapotanJSleepKM.Algorithm;
+import com.JeremyGandaPandapotanJSleepKM.BedType;
 import com.JeremyGandaPandapotanJSleepKM.City;
 import com.JeremyGandaPandapotanJSleepKM.Facility;
 import com.JeremyGandaPandapotanJSleepKM.Price;
@@ -46,16 +49,27 @@ public class RoomController implements BasicGetController<Room> {
             @RequestParam String name,
             @RequestParam int size,
             @RequestParam int price,
-            @RequestParam Facility facility,
+            @RequestParam ArrayList<Facility> facility,
+            @RequestParam BedType bedType,
             @RequestParam City city,
             @RequestParam String address
             ){
 		Account account = Algorithm.<Account>find(AccountController.accountTable, pred -> pred.id == accountId && pred.renter != null);
         if(account == null) return null;
         else{
-            Room room = new Room(accountId, name, size, new Price(price), facility, city, address);
+            Room room = new Room(accountId, name, size, new Price(price), facility ,bedType , city, address);
             roomTable.add(room);
             return room;
         }	
 	}
+	
+	@GetMapping("/getAllRoom")
+    public List<Room> getAllRoom(
+            @RequestParam int page,
+            @RequestParam int pageSize
+    ){
+        //return Algorithm.<Room>paginate(getJsonTable(), page, pageSize, pred -> true);
+		return Algorithm.paginate(RoomController.roomTable, page, pageSize, Objects::nonNull);
+    }
+	
 }

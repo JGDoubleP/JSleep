@@ -9,5 +9,5 @@ package com.JeremyGandaPandapotanJSleepKM;
  */
 public enum Facility
 {
-    WiFi, Bathup, Balcony, AC, FitnessCenter, Refrigenerator, Restaurant, SwimmingPool
+	WiFi, Bathtub, Balcony, AC, FitnessCenter, Refrigerator, Restaurant, SwimmingPool
 }
